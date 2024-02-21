@@ -23,7 +23,7 @@ public class StudentsController {
 
     private static List<Student> students = new ArrayList<>();
     static {
-        // Datos quemados 
+        // Datos quemados
         students.add(new Student(1, "Pedro Ramirez", "pedro.ramirez@example.com", 3.7f));
         students.add(new Student(2, "Ana Torres", "ana.torres@example.com", 3.9f));
         students.add(new Student(3, "Luis Morales", "luis.morales@example.com", 3.4f));
@@ -40,8 +40,8 @@ public class StudentsController {
     @GetMapping("/name/{nombre}")
     public ResponseEntity<List<Student>> getStudentByName(@PathVariable String nombre) {
         List<Student> result = students.stream()
-            .filter(student -> student.getNombre().equalsIgnoreCase(nombre))
-            .collect(Collectors.toList());
+                .filter(student -> student.getNombre().equalsIgnoreCase(nombre))
+                .collect(Collectors.toList());
 
         if (result.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -52,10 +52,10 @@ public class StudentsController {
     @GetMapping("/{id}")
     public ResponseEntity<Student> getStudentById(@PathVariable int id) {
         return students.stream()
-            .filter(student -> student.getId() == id)
-            .findFirst()
-            .map(student -> new ResponseEntity<>(student, HttpStatus.OK))
-            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .filter(student -> student.getId() == id)
+                .findFirst()
+                .map(student -> new ResponseEntity<>(student, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
